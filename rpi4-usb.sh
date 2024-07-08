@@ -136,14 +136,14 @@ fi
 # enable dwc2 overlay
 
 teeconfirm "dtoverlay=dwc2" $CONFIG_FILE
-if ! $(grep -q modules-load=dwc2 $CMDLINE_FILE) ; then
+if ! $(grep -q modules-load=dwc2,g_ether $CMDLINE_FILE) ; then
     echo
-    echo "Add the line modules-load=dwc2 to $CMDLINE_FILE"
+    echo "Add the line modules-load=dwc2,g_ether to $CMDLINE_FILE"
     if ! confirm ; then
         exit
     fi
     if $DO_MODIFY ; then
-    sudo sed -i '${s/$/ modules-load=dwc2/}' $CMDLINE_FILE
+    sudo sed -i '${s/$/ modules-load=dwc2,g_ether/}' $CMDLINE_FILE
     fi
 fi
 
